@@ -1,0 +1,16 @@
+{
+  "name": "Saha GPS — ITRF96 UTM",
+  "short_name": "Saha GPS",
+  "description": "Jeolojik saha çalışması için GPS: ITRF96 / TM6° nokta alımı, iz kaydı, aplikasyon. Hazırlayan: Mete Varol (Jeoloji Mühendisi)",
+  "lang": "tr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f2f45",
+  "theme_color": "#0f2f45",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
