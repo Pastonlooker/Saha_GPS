@@ -1,0 +1,96 @@
+SAHA GPS 2.0 — ANDROID / iPHONE KURULUM VE KULLANIM
+HAZIRLAYAN: METE VAROL (JEOLOJİ MÜHENDİSİ)
+===================================================
+
+Bu klasör, Android (Chrome) ve iPhone (Safari) telefonlarda çalışan,
+ana ekrana uygulama gibi yüklenen bir saha GPS programıdır (PWA).
+Telefonun GPS'ine erişebilmesi için dosyaların bir kez "https://"
+adresinden açılması gerekir (Android ve iOS bu kuralı koyar).
+
+DOSYALAR
+  index.html            Uygulamanın tamamı (gömülü harita verisi, PDF modülü dahil)
+  sw.js                 Çevrimdışı çalışma ve harita önbelleği
+  manifest.webmanifest  Ana ekran simgesi
+  icon-192.png, icon-512.png
+
+1) İNTERNETE KOYMA — GitHub Pages (ücretsiz, kalıcı)
+  1. github.com'da ücretsiz hesap açın (bilgisayardan).
+  2. "+" > New repository > ad: saha-gps > Public > Create.
+  3. "uploading an existing file" > bu klasördeki 5 dosyayı sürükleyin > Commit changes.
+  4. Settings > Pages > Source: "Deploy from a branch", Branch: main / (root) > Save.
+  5. 1-2 dakika sonra adres: https://KULLANICIADINIZ.github.io/saha-gps/
+  (Kayıtlarınız GitHub'a gitmez; yalnızca telefonunuzda saklanır.)
+  Güncelleme: yeni index.html'i aynı depoya yükleyin; telefon bir sonraki
+  açılışta yeni sürümü alır.
+
+2) TELEFONA YÜKLEME
+  Android: Chrome ile adresi açın > konum iznine "Uygulamayı kullanırken"
+           + "Hassas" > menü (⋮) > "Uygulamayı yükle / Ana ekrana ekle".
+  iPhone : Safari ile açın > Paylaş > "Ana Ekrana Ekle". Konum için
+           Ayarlar > Gizlilik > Konum Servisleri > Safari Web Siteleri:
+           "Kullanırken" + "Kesin Konum". Pusula için Konum sekmesindeki
+           "Pusulayı etkinleştir" düğmesine bir kez basın.
+
+3) KONUM ÇİFT KONTROLÜ (Konum sekmesi)
+  ① Uydu (GNSS) konumu: sürekli takip.
+  ② Ağ konumu: telefonun / operatörün konum servisi (Google Konum
+     Servisleri: Wi-Fi + baz istasyonu). Açılışta ve "Ağ konumuyla kontrol
+     et" düğmesiyle alınır; uydu konumuyla fark ve TUTARLI / SINIRDA /
+     UYUMSUZ sonucu gösterilir. Kaydedilen her noktaya bu sonuç yazılır.
+     Not: Bazı telefonlar ağ konumunu ayrıca vermez ("AYNI KAYNAK");
+     o durumda Google Haritalar karşılaştırmasını kullanın.
+  ③ IP konumu: internet servis sağlayıcısına göre kaba (şehir düzeyi)
+     bölge kontrolü. İsteğe bağlıdır; düğmeye basınca sorulur.
+  "Google Haritalar'da aç": ölçülen nokta Google Haritalar'da iğne olarak
+     açılır; telefonun mavi noktasıyla aynı yerde olmalıdır.
+
+4) YÖNLÜ SONDAJ (Yönlü sekmesi)
+  * Kuyu başını GPS ile "Sondaj / Üretim / Reenjeksiyon kuyusu" olarak kaydedin.
+  * Yönlü sekmesinde kuyu başını seçin, azimut referansını (coğrafi / grid /
+    manyetik), kuyu başı kotunu ve masa (RKB) yüksekliğini girin.
+  * İstasyonları üç yoldan girin: plan üretici (KOP, yapı hızı, son eğim,
+    azimut, TD), elle satır ekleme veya survey listesini yapıştırma
+    (her satır: MD Eğim Azimut).
+  * HESAPLA: minimum eğrilik yöntemiyle her istasyon için TVD, kot, K/G, D/B,
+    kapanış, VS, DLS ve koordinatlar: ITRF96 (TM6), WGS84 enlem/boylam,
+    ED50 (UTM ve enlem/boylam). Plan görünüş ve düşey kesit çizilir,
+    yörünge haritada gösterilir.
+  * ED50 dönüşümü: EPSG "ED50 to WGS 84 (30)" Türkiye parametreleri
+    (7 parametreli Helmert, ±2 m). pyproj ile birebir doğrulanmıştır
+    (Kuyucak civarında kayma ≈ −42 m Doğu, −186 m Kuzey).
+    Ruhsat sınırı gibi resmî işlerde TKGM/HGM parametreleriyle teyit edin.
+
+5) DIŞA AKTARMA (Kayıtlar > Dışa aktar)
+  PDF  : rapor — kroki, nokta tablosu (ITRF96 + ED50 + WGS84, çift kontrol),
+         yönlü kuyu sayfaları (plan, düşey kesit, istasyon tablosu),
+         saha fotoğrafları; her sayfada "HAZIRLAYAN" imzası.
+  KMZ  : Google Earth — noktalar (fotoğraflı), izler, yönlü kuyu yörüngeleri.
+  CSV  : Excel (Türkçe, ; ayraçlı) — ITRF96, ED50, WGS84 sütunları.
+  Ayrıca: yönlü sondaj CSV, KML, GPX, DXF (3B kuyu yörüngesi), NCN, JSON yedek.
+  Android'de "Paylaş" ile doğrudan WhatsApp / e-posta / Drive'a gönderilir.
+
+6) HARİTALAR
+  * Uydu (Esri), Sokak (OpenStreetMap), Topoğrafya (OpenTopoMap ve Esri):
+    internetle açılır; ⬇ düğmesiyle telefona kaydedilip internetsiz kullanılır.
+    Hazır bölge paketleri: Kuyucak–Pamukören sahası, Ege Bölgesi genel,
+    Aydın, Denizli, İzmir, Manisa, Muğla, Uşak, Kütahya, Afyonkarahisar,
+    kayıtlı noktaların çevresi, ekrandaki alan. Sahaya çıkmadan, Wi-Fi'de
+    indirin (bir indirmede en fazla 6000 karo).
+  * Gömülü Türkiye/Ege haritası: uygulamanın İÇİNDEDİR, hiç internet
+    istemez — Ege'de nüfusu 500'ün üzerindeki tüm yerleşimler (köy dahil,
+    ~970 yer adı), Türkiye'nin büyük yerleşimleri, kıyı çizgisi, büyük göller,
+    10 km / 1 km UTM ızgarası. (Kaynak: GeoNames CC-BY 4.0, Natural Earth)
+  * Google Uydu / Hibrit / Yol / Arazi: Google'ın resmî Map Tiles API'si ile
+    çalışır ve size ait bir API anahtarı gerektirir (Google kuralları gereği
+    anahtarsız kullanılamaz, telefona indirilemez). Anahtar alma:
+    console.cloud.google.com > proje > faturalandırma (aylık ücretsiz kota
+    vardır) > "Map Tiles API"yi etkinleştir > API anahtarı oluştur >
+    Araçlar > Ayarlar > "Google Maps API anahtarı" alanına yapıştır.
+
+SAHADA ÖNERİLER
+  * Nokta alırken telefonu sabit tutun; "NOKTA AL" 30 ölçünün ortalamasını alır.
+  * Ekran kapanınca telefon GPS'i durdurur: iz kaydında "Ekranı açık tut".
+  * Veriler yalnızca telefonda durur: her gün JSON yedek alın.
+  * Tarayıcı verilerini temizlemek kayıtları siler.
+  * Telefon GNSS yüksekliği ±5–15 m hatalıdır; kuyu başı kotunu harita /
+    nivelman değeriyle girin.
