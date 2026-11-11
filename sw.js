@@ -1,5 +1,5 @@
 // Saha GPS servis çalışanı — uygulama kabuğu + harita karoları önbelleği
-const APP = "sahagps-app-v5", TILE = "sahagps-tiles-v1";
+const APP = "sahagps-app-v6", TILE = "sahagps-tiles-v1";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./jeoloji_pamukoren.jpg", "./jeoloji_m20a2.jpg", "./litoloji_pam.png", "./litoloji_m20.png"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(APP).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k.startsWith("sahagps-app") && k !== APP).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
