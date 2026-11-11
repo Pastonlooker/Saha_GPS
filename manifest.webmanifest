@@ -1,7 +1,7 @@
 {
   "name": "Saha GPS — ITRF96 UTM",
   "short_name": "Saha GPS",
-  "description": "Jeolojik saha çalışması için GPS: ITRF96 / TM6° nokta alımı, iz kaydı, aplikasyon. Hazırlayan: Mete Varol (Jeoloji Mühendisi)",
+  "description": "Jeolojik saha çalışması için GPS: ITRF96 / TM6° nokta alımı, iz kaydı, aplikasyon. Sistem Tasarımı & Kodlama: Mete VAROL",
   "lang": "tr",
   "start_url": "./index.html",
   "scope": "./",

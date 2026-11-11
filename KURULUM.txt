@@ -1,5 +1,5 @@
-SAHA GPS 2.0 — ANDROID / iPHONE KURULUM VE KULLANIM
-HAZIRLAYAN: METE VAROL (JEOLOJİ MÜHENDİSİ)
+SAHA GPS 3.0 — ANDROID / iPHONE KURULUM VE KULLANIM
+Sistem Tasarımı & Kodlama: Mete VAROL
 ===================================================
 
 Bu klasör, Android (Chrome) ve iPhone (Safari) telefonlarda çalışan,
@@ -9,6 +9,8 @@ adresinden açılması gerekir (Android ve iOS bu kuralı koyar).
 
 DOSYALAR
   index.html            Uygulamanın tamamı (gömülü harita verisi, PDF modülü dahil)
+  jeoloji_pamukoren.jpg, jeoloji_m20a2.jpg   Gömülü MTA jeoloji paftaları
+  litoloji_pam.png, litoloji_m20.png         Litoloji sorgu rasterleri
   sw.js                 Çevrimdışı çalışma ve harita önbelleği
   manifest.webmanifest  Ana ekran simgesi
   icon-192.png, icon-512.png
@@ -16,7 +18,7 @@ DOSYALAR
 1) İNTERNETE KOYMA — GitHub Pages (ücretsiz, kalıcı)
   1. github.com'da ücretsiz hesap açın (bilgisayardan).
   2. "+" > New repository > ad: saha-gps > Public > Create.
-  3. "uploading an existing file" > bu klasördeki 5 dosyayı sürükleyin > Commit changes.
+  3. "uploading an existing file" > bu klasördeki TÜM dosyaları (9 adet) sürükleyin > Commit changes.
   4. Settings > Pages > Source: "Deploy from a branch", Branch: main / (root) > Save.
   5. 1-2 dakika sonra adres: https://KULLANICIADINIZ.github.io/saha-gps/
   (Kayıtlarınız GitHub'a gitmez; yalnızca telefonunuzda saklanır.)
@@ -50,7 +52,7 @@ DOSYALAR
     manyetik), kuyu başı kotunu ve masa (RKB) yüksekliğini girin.
   * İstasyonları üç yoldan girin: plan üretici (KOP, yapı hızı, son eğim,
     azimut, TD), elle satır ekleme veya survey listesini yapıştırma
-    (her satır: MD Eğim Azimut).
+    (her satır: MD INC AZIMUTH).
   * HESAPLA: minimum eğrilik yöntemiyle her istasyon için TVD, kot, K/G, D/B,
     kapanış, VS, DLS ve koordinatlar: ITRF96 (TM6), WGS84 enlem/boylam,
     ED50 (UTM ve enlem/boylam). Plan görünüş ve düşey kesit çizilir,
@@ -63,7 +65,7 @@ DOSYALAR
 5) DIŞA AKTARMA (Kayıtlar > Dışa aktar)
   PDF  : rapor — kroki, nokta tablosu (ITRF96 + ED50 + WGS84, çift kontrol),
          yönlü kuyu sayfaları (plan, düşey kesit, istasyon tablosu),
-         saha fotoğrafları; her sayfada "HAZIRLAYAN" imzası.
+         saha fotoğrafları; her sayfada "Sistem Tasarımı & Kodlama: Mete VAROL" imzası.
   KMZ  : Google Earth — noktalar (fotoğraflı), izler, yönlü kuyu yörüngeleri.
   CSV  : Excel (Türkçe, ; ayraçlı) — ITRF96, ED50, WGS84 sütunları.
   Ayrıca: yönlü sondaj CSV, KML, GPX, DXF (3B kuyu yörüngesi), NCN, JSON yedek.
@@ -86,6 +88,49 @@ DOSYALAR
     console.cloud.google.com > proje > faturalandırma (aylık ücretsiz kota
     vardır) > "Map Tiles API"yi etkinleştir > API anahtarı oluştur >
     Araçlar > Ayarlar > "Google Maps API anahtarı" alanına yapıştır.
+
+7) GERİ AL, DÜZENLEME VE SURVEY KOPYALAMA (sürüm 2.1)
+  * Üst çubuktaki ↶ düğmesi son 40 işlemi geri alır (nokta kaydı/silme,
+    konum düzenleme, survey hücresi, yapıştırma, kopyalama, içe aktarma,
+    tüm verileri silme...). Sayı rozeti kaç adım geri gidilebileceğini gösterir.
+  * Kayıtlar > Düzenle > KONUM DÜZENLEYİCİ: noktanın Y/X/H değerini ITRF96,
+    ED50 veya WGS84 olarak elle düzeltin, mevcut GPS konumunu yazın ya da
+    "Haritada taşı" ile kırmızı artıyı yeni yere getirin.
+  * Yönlü > Kayıtlı surveyler: bir kuyunun survey'ini şablon olarak kaydedin,
+    başka kuyuya "uygulayın" veya birden çok kuyuya "kopyalayın". Diğer
+    kuyuların survey'leri de listede hazır görünür. Kuyu başı koordinatı ve
+    kotu her kuyunun kendisinden alınır.
+  * Survey tablosu: MD, INC, AZIMUTH girilir; VS ve DLS anında hesaplanır.
+
+8) SÜRÜM 3.0 YENİLİKLERİ (Jeoloji sekmesi ve Araçlar)
+  0. Gömülü jeoloji haritaları: Pamukören J-451 (1/25.000) ve MTA Aydın M 20-a2.
+     Konum sekmesi bulunduğunuz birimi (ör. Q-2-k Kuvaterner çakıltaşı) gösterir;
+     yeni noktada litoloji alanı haritadan önerilir. Paftalar ED50 kabul edildi
+     (Ayarlar'dan ITRF96 yapılabilir). Litoloji renk/desenden otomatik okunur,
+     birim sınırlarında ±100 m belirsizlik vardır; sahada teyit edin.
+  1. Yapısal ölçüm: telefonla doğrultu/eğim (arka yüz kayaya), Schmidt ağı,
+     gül diyagramı, ortalama düzlem, Fisher k, α95; CSV/PDF.
+  2. Mostra/litoloji formu: kaya türü, litoloji, renk, tane, ayrışma, alterasyon,
+     kırık yoğunluğu (nokta formunda).
+  3. Numune takibi: otomatik numara, analiz listesi, durum; QR etiket PDF (3×8).
+  4. 🎤 Sesle yazma (Android Chrome, internet gerekir).
+  5. Su kimyası: iyon dengesi, 11 jeotermometre, Giggenbach diyagramı; CSV/PDF.
+  6. Ölçüm defteri: sıcaklık/debi/basınç/EC/pH/seviye zaman serisi ve grafik.
+  7. Litoloji kolonu (Yönlü sekmesi): MD→TVD→kot; CSV (kuyu logu aracına) ve PNG.
+  8. Hedef toleransı, plan↔gerçekleşen sapması, yakın kuyu çarpışma kontrolü.
+  9. J / S / yatay plan; hedef koordinat + TVD'den otomatik plan.
+ 10. Ruhsat ve koruma zonları: koordinatla, tampon ya da çizimle; canlı içinde/
+     dışında ve sınıra uzaklık. J-451 resmî köşe koordinatlarını siz girin
+     (alan 6295,50 ha ile karşılaştırarak kontrol edin).
+ 11. Word (.docx) raporları: koordinat tablosu, saha gözlem raporu, ruhsat/zon
+     değerlendirmesi, yönlü kuyu bölümü (Başlık 1/2, Tablo N./Şekil N.).
+ 12. Harici RTK GNSS: Bluetooth LE (Nordic UART) veya USB ile NMEA (Android
+     Chrome); RTK FIX/FLOAT ve σ doğruluk gösterilir.
+ 13. DEM kotu (SRTM ≈30 m): bölge bazında indirilip internetsiz kullanılır.
+ 14. Ek MTA paftası (JPG) ekleme: addan otomatik konum ve çerçeve kırpma;
+     WMS / XYZ katman ekleme.
+ 15. Ekip senkronu: dosya paketi ile kayıt bazında birleştirme (çakışmada iki
+     kopya); ↶ ile geri alınabilir.
 
 SAHADA ÖNERİLER
   * Nokta alırken telefonu sabit tutun; "NOKTA AL" 30 ölçünün ortalamasını alır.
